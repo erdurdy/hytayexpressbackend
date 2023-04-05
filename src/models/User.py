@@ -11,5 +11,5 @@ class User(Base):
     email = Column("email", String(50))
     is_ative = Column("is_ative", Boolean, default=False)
     is_star = Column("is_star", Boolean, default=False)
-    ver_number = Column("ver_number", Integer(50))
+    ver_number = Column("ver_number", Integer)
     
