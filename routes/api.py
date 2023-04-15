@@ -3,5 +3,10 @@ from fastapi import APIRouter
 import routes  
 
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/api/v1"
+)
 router.include_router(routes.Offer.router)
+router.include_router(routes.Action.router)
+router.include_router(routes.ActionType.router)
+router.include_router(routes.Container.router)

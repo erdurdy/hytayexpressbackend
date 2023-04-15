@@ -10,7 +10,5 @@ class Container(Base):
     created = Column("created", DateTime, default=datetime.now())
     start_date = Column("start_date", DateTime)
     end_date = Column("end_date", DateTime)
-    productId = Column("productId", Integer, ForeignKey("products.id"))
-    actionId = Column("actionId", Integer, ForeignKey("actions.id"))
     is_active = Column("is_active", Boolean)
     is_moved = Column("is_moved", Boolean)

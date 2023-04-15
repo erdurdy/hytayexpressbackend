@@ -14,6 +14,7 @@ class Product(Base):
     product_price = Column("product_price", String)
     created = Column("created", DateTime, default=datetime.now())
     end_date = Column("end_date", DateTime)
+    containerId = Column("containerId", Integer, ForeignKey("containers.id"))
     transportId = Column("transportId", Integer, ForeignKey("transports.id"))
     countryId = Column("countryId", Integer, ForeignKey("countries.id"))
     districtId = Column("districtId", Integer, ForeignKey("districts.id"))

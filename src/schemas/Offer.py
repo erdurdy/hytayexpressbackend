@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
-class OfferSchema(BaseModel):
+class Offer(BaseModel):
     fullname: str
-    number: int
+    phone_number: int 
     email: str
     address: str
     offer:str
@@ -10,13 +10,18 @@ class OfferSchema(BaseModel):
     class Config:
         orm_mode=True
 
-class CreateOffer(BaseModel):
+class CreateOffer(Offer):
+    
+    class Config:
+        orm_mode=True
+        
+class ViewOffer(BaseModel):
+    id:int
     fullname: str
-    number: int
+    phone_number: int 
     email: str
     address: str
     offer:str
-    
     class Config:
         orm_mode=True
     
