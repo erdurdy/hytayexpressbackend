@@ -26,17 +26,35 @@ def get_by_id(id:int, db: Session = Depends(get_db)):
     return ViewAction.from_orm(data)
 
 from datetime import datetime as time
-from fastapi import File, UploadFile
+from fastapi import File, UploadFile, Body, Form, Depends
 from pathlib import Path
 import shutil
+from pydantic import BaseModel
+import json
+
+class ActionSchema(BaseModel):
+    name: str
+    # number: int
+    
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate_to_json
+
+    @classmethod
+    def validate_to_json(cls, value):
+        if isinstance(value, str):
+            return cls(**json.loads(value))
+        return value
 
 @router.post("/")
-async def get_offer(file: UploadFile = File(...)):
+async def get_offer(action: str = Form(...), file: UploadFile | None = File(None)):
 # def get_offer(
 #     image: bytes, datetime: time | None = None, containerId: int | None = None,
 #     actiontypeId: int | None = None, db: SessionLocal = Depends(get_db)):
-    
+    print(action)
     print(file.filename)
+    
+    
     with open(file.filename, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     
